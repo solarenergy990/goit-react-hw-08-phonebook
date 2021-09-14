@@ -12,10 +12,10 @@ import operations from '../../redux/app/operations';
 import appSelectors from '../../redux/app/contacts-selectors';
 
 const ContactsList = () => {
-  const contacts = useSelector(state => appSelectors.contactList(state));
-  const filter = useSelector(state => appSelectors.contactFilter(state));
-  const isLoading = useSelector(state => appSelectors.contactLoading(state));
-  const error = useSelector(state => appSelectors.contactError(state));
+  const contacts = useSelector(state => appSelectors.getContactList(state));
+  const filter = useSelector(state => appSelectors.getContactFilter(state));
+  const isLoading = useSelector(state => appSelectors.getContactLoading(state));
+  const error = useSelector(state => appSelectors.getContactError(state));
   const dispatch = useDispatch();
 
   useEffect(() => {

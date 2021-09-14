@@ -4,6 +4,7 @@ import shortid from 'shortid';
 import { useSelector, useDispatch } from 'react-redux';
 import operations from '../../redux/app/operations';
 
+import { Form, Button, Row, Col } from 'react-bootstrap';
 import s from './ContactForm.module.css';
 
 const ContactForm = () => {
@@ -51,40 +52,45 @@ const ContactForm = () => {
   };
 
   return (
-    <div>
-      <form className="form" onSubmit={handleSubmit}>
-        <div className="form-container">
-          <label className={s.label}>
-            <p className={s.labelText}>Name</p>
-            <input
-              type="text"
-              name="name"
-              pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-              title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
-              required
-              onChange={handleChange}
-              value={name}
-              className={s.input}
-            />
-          </label>
-          <label className={s.label}>
-            <p className={s.labelText}>Number</p>
-            <input
-              type="tel"
-              name="number"
-              pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-              title="Номер телефона должен состоять из цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
-              required
-              onChange={handleChange}
-              value={number}
-              className={s.input}
-            />
-          </label>
-          <button type="submit" className={s.button}>
-            Add contact
-          </button>
-        </div>
-      </form>
+    <div className={s.formContainer}>
+      <Form onSubmit={handleSubmit}>
+        <Row>
+          <Col className={s.rows}>
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Label>Name</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter your name"
+                onChange={handleChange}
+                name="name"
+                value={name}
+                pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+                title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
+              />
+            </Form.Group>
+          </Col>
+          <Col className={s.rows}>
+            <Form.Group className="mb-3" controlId="formBasicPassword">
+              <Form.Label>Number</Form.Label>
+              <Form.Control
+                type="tel"
+                placeholder="Enter your number"
+                onChange={handleChange}
+                name="number"
+                value={number}
+                pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+                title="Номер телефона должен состоять из цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
+              />
+            </Form.Group>
+          </Col>
+
+          <Col className={s.rows}>
+            <Button variant="primary" type="submit">
+              Add contact
+            </Button>
+          </Col>
+        </Row>
+      </Form>
     </div>
   );
 };

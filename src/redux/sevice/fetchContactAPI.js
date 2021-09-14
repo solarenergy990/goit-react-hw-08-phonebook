@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-axios.defaults.baseURL = 'http://localhost:7777';
+// axios.defaults.baseURL = 'http://localhost:7777';
 
 const getContacts = async () => {
   const { data } = await axios.get('/contacts');
@@ -12,7 +12,7 @@ const postContact = async contact => {
   return data;
 };
 const deleteContact = async contactId => {
-  console.log('fetch id', contactId);
+  // console.log('fetch id', contactId);
   const { data } = await axios.delete(`/contacts/${contactId}`);
   return data;
 };

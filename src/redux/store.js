@@ -1,8 +1,10 @@
-import { combineReducers } from 'redux';
+// import { combineReducers } from 'redux';
 
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
-import logger from 'redux-logger';
+// import logger from 'redux-logger';
 import {
+  persistStore,
+  persistReducer,
   FLUSH,
   REHYDRATE,
   PAUSE,
@@ -10,13 +12,22 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+import userReducer from '../redux/user/userReducer';
 
 import appReducer from './app/reducer';
 import thunk from 'redux-thunk';
 
-const rootReducer = combineReducers({
-  appState: appReducer,
-});
+const persistConfig = {
+  key: 'auth',
+  storage,
+  whitelist: ['token'],
+};
+
+// const rootReducer = combineReducers({
+//   appState: appReducer,
+//   auth: persistReducer(persistConfig, userReducer),
+// });
 
 const middleware = [
   thunk,
@@ -25,12 +36,22 @@ const middleware = [
       ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
     },
   }),
-  logger,
+  // logger,
 ];
 
 const store = configureStore({
-  reducer: rootReducer,
+  reducer: {
+    auth: persistReducer(persistConfig, userReducer),
+    appState: appReducer,
+  },
   middleware,
 });
 
-export default store;
+const persistor = persistStore(store);
+
+const storeItems = {
+  store,
+  persistor,
+};
+
+export default storeItems;

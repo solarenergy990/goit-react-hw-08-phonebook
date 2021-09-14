@@ -4,23 +4,26 @@ import s from './Filter.module.css';
 import { useSelector, useDispatch } from 'react-redux';
 import appActions from '../../redux/app/actions';
 import appSelectors from '../../redux/app/contacts-selectors';
+import { Form, Button, Row, Col } from 'react-bootstrap';
 
 const Filter = () => {
-  const filter = useSelector(state => appSelectors.contactFilter(state));
+  const filter = useSelector(state => appSelectors.getContactFilter(state));
 
   const dispatch = useDispatch();
   const onChange = value => dispatch(appActions.setFilter(value));
 
   return (
-    <label>
-      <p className={s.label}>Find contacts by name</p>
-      <input
-        className={s.input}
-        type="text"
-        value={filter}
-        onChange={evt => onChange(evt.currentTarget.value)}
-      ></input>
-    </label>
+    <Form>
+      <Form.Group className="mb-3" controlId="formGroupEmail">
+        <Form.Label>Find contacts by name</Form.Label>
+        <Form.Control
+          type="text"
+          placeholder="Start typing contact name"
+          value={filter}
+          onChange={evt => onChange(evt.currentTarget.value)}
+        />
+      </Form.Group>
+    </Form>
   );
 };
 

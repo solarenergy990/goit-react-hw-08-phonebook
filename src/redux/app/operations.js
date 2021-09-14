@@ -16,8 +16,8 @@ const postContactOperation = contact => async dispatch => {
   dispatch(contactFetchStarted());
   try {
     const result = await contactAPI.postContact(contact);
-    // console.log('result in post', result);
-    dispatch(addContact(result));
+    console.log('result in post', result);
+    dispatch(addContact(contact));
   } catch (error) {
     dispatch(contactFetchError(error));
   } finally {
