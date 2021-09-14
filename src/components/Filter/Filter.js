@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import s from './Filter.module.css';
+
 import { useSelector, useDispatch } from 'react-redux';
 import appActions from '../../redux/app/actions';
 import appSelectors from '../../redux/app/contacts-selectors';
-import { Form, Button, Row, Col } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 
 const Filter = () => {
   const filter = useSelector(state => appSelectors.getContactFilter(state));
