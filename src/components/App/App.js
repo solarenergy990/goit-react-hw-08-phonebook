@@ -13,13 +13,12 @@ import Loader from 'react-loader-spinner';
 
 const ContactsView = lazy(() => import('../../views/ContactsView'));
 const RegisterView = lazy(() => import('../../views/RegisterView'));
-const { getIsLoggedIn, getToken, isLoading } = userSelectors;
+const { getIsLoggedIn, getToken } = userSelectors;
 
 const App = () => {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(state => getIsLoggedIn(state));
   const token = useSelector(state => getToken(state));
-  // const loadingRoute = useSelector(state => isLoading(state));
 
   useEffect(() => {
     dispatch(userOperations.getCurrentUserOperation(token));
