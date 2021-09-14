@@ -35,9 +35,6 @@ const App = () => {
         }
       >
         <Switch>
-          {/* <Route path="/">
-            {!isLoggedIn ? <LoginView /> : <Redirect to="/contacts" />}
-          </Route> */}
           <Route path="/contacts">
             {isLoggedIn ? <ContactsView /> : <Redirect to="/login" />}
           </Route>
