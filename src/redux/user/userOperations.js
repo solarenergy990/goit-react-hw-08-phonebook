@@ -28,6 +28,7 @@ const registerOperation = registerData => async dispatch => {
     token.set(data.token);
     dispatch(registerUser(data));
   } catch (error) {
+    alert('bad data given');
     dispatch(userError(error));
   } finally {
     dispatch(isLoading(false));

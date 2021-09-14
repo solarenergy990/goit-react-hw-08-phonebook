@@ -12,7 +12,6 @@ const postContact = async contact => {
   return data;
 };
 const deleteContact = async contactId => {
-  // console.log('fetch id', contactId);
   const { data } = await axios.delete(`/contacts/${contactId}`);
   return data;
 };

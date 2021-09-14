@@ -9,20 +9,34 @@ const RegisterView = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleChangeInput = evt => {
-    const { name, value } = evt.target;
-    switch (name) {
-      case 'name':
-        setName(value);
-        break;
-      case 'email':
-        setEmail(value);
-        break;
-      case 'password':
-        setPassword(value);
-        break;
-      default:
-        return;
+  // const handleChange = evt => {
+  //   const { name, value } = evt.target;
+  //   switch (name) {
+  //     case 'name':
+  //       setName(value);
+  //       break;
+  //     case 'email':
+  //       setEmail(value);
+  //       break;
+  //     case 'password':
+  //       setPassword(value);
+  //       break;
+  //     default:
+  //       return;
+  //   }
+  // };
+
+  const handleChange = evt => {
+    const { value } = evt.target;
+
+    if (evt.currentTarget.name === 'name') {
+      setName(value);
+    }
+    if (evt.currentTarget.name === 'email') {
+      setEmail(value);
+    }
+    if (evt.currentTarget.name === 'password') {
+      setPassword(value);
     }
   };
 
@@ -49,7 +63,7 @@ const RegisterView = () => {
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
           required
-          onChange={handleChangeInput}
+          onChange={handleChange}
         />
         <Form.Text className="text-muted">
           We'll never share your name with anyone else.
@@ -63,7 +77,7 @@ const RegisterView = () => {
           name="email"
           value={email}
           required
-          onChange={handleChangeInput}
+          onChange={handleChange}
         />
         <Form.Text className="text-muted">
           We'll never share your email with anyone else.
@@ -79,7 +93,7 @@ const RegisterView = () => {
           name="password"
           value={password}
           required
-          onChange={handleChangeInput}
+          onChange={handleChange}
         />
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicCheckbox">
